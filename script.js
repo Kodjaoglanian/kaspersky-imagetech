@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.querySelector(".nav-toggle");
   const mobileMenu = document.getElementById("mobileMenu");
   const watchDemoBtn = document.getElementById("watch-demo");
-  const featureSection = document.getElementById("features");
+  const featureSection = document.getElementById("solutions");
   const floatingCta = document.querySelector(".floating-cta");
+  const leadForm = document.querySelector(".lead-form");
 
   const toggleMobileMenu = () => {
     const isOpen = mobileMenu.classList.toggle("open");
@@ -56,16 +57,58 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", toggleFloatingCta, { passive: true });
   toggleFloatingCta();
 
+  if (leadForm) {
+    const statusEl = leadForm.querySelector(".form-status");
+    const submitBtn = leadForm.querySelector("button[type='submit']");
+
+    const setStatus = (message = "", state = "") => {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.classList.remove("success", "error");
+      if (state) statusEl.classList.add(state);
+    };
+
+    leadForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (submitBtn) submitBtn.disabled = true;
+      setStatus("Enviando dados...");
+
+      const formData = new FormData(leadForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro na API: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setStatus(data.message || "Recebemos seus dados!", "success");
+        leadForm.reset();
+      } catch (error) {
+        console.error(error);
+        setStatus("Não foi possível enviar agora. Tente novamente.", "error");
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+
   watchDemoBtn.addEventListener("click", () => {
     featureSection.scrollIntoView({ behavior: "smooth" });
   });
 
   const applyBenefitTilt = () => {
-    const benefitCards = document.querySelectorAll(".benefit-card");
+    const solutionCards = document.querySelectorAll(".solution-card");
     const allowTilt = window.matchMedia("(pointer: fine)").matches;
     if (!allowTilt) return;
 
-    benefitCards.forEach((card) => {
+    solutionCards.forEach((card) => {
       card.addEventListener("mousemove", (event) => {
         const rect = card.getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -131,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const revealTargets = document.querySelectorAll(
-      ".benefit-card, .feature, .testimonial, .timeline-item, .section-header, .alliance-intro, .ally-card, .partner-footer, .contact-card, .contact-form, .presence-card, .presence-metric, .faq-item"
+      ".solution-card, .testimonial, .section-header, .alliance-copy, .alliance-panel, .partner-footer, .contact-card, .contact-form"
     );
 
     if ("IntersectionObserver" in window) {

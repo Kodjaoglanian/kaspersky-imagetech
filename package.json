@@ -1,0 +1,16 @@
+{
+  "name": "kaspersky-landing",
+  "version": "1.0.0",
+  "description": "Landing page Kaspersky + Grupo Imagetech com servidor Node para servir assets e receber leads.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
+  }
+}
