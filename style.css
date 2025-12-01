@@ -922,6 +922,73 @@ h4 {
   margin-top: -4px;
 }
 
+.faq {
+  background: linear-gradient(180deg, #051007 0%, #030503 100%);
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.faq-item {
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px 24px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+.faq-item[open] {
+  border-color: rgba(45, 187, 99, 0.6);
+  background: rgba(45, 187, 99, 0.05);
+}
+
+.faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary span:first-child {
+  font-size: 1.05rem;
+}
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+  border-color: var(--primary);
+}
+
+.faq-item p {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .about {
   background: linear-gradient(180deg, #0b150e 0%, #070b08 100%);
   border-top: 1px solid var(--gray-100);
@@ -1035,6 +1102,43 @@ h4 {
   line-height: 1.5;
 }
 
+.floating-cta {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 26px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 20% 20%, rgba(45, 187, 99, 0.95), rgba(9, 18, 11, 0.95));
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.floating-cta::after {
+  content: "→";
+  font-size: 1rem;
+}
+
+.floating-cta.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.floating-cta:hover {
+  transform: translateY(-2px);
+}
+
 /* Responsive tweaks */
 @media (max-width: 1024px) {
   .hero {
@@ -1096,5 +1200,10 @@ h4 {
   }
   section {
     padding: 70px 5vw;
+  }
+  .floating-cta {
+    right: 16px;
+    bottom: 16px;
+    padding: 14px 20px;
   }
 }

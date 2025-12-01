@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileMenu = document.getElementById("mobileMenu");
   const watchDemoBtn = document.getElementById("watch-demo");
   const featureSection = document.getElementById("features");
+  const floatingCta = document.querySelector(".floating-cta");
 
   const toggleMobileMenu = () => {
     const isOpen = mobileMenu.classList.toggle("open");
@@ -42,6 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.setAttribute("aria-expanded", "false");
     });
   });
+
+  const toggleFloatingCta = () => {
+    if (!floatingCta) return;
+    if (window.scrollY > 400) {
+      floatingCta.classList.add("show");
+    } else {
+      floatingCta.classList.remove("show");
+    }
+  };
+
+  window.addEventListener("scroll", toggleFloatingCta, { passive: true });
+  toggleFloatingCta();
 
   watchDemoBtn.addEventListener("click", () => {
     featureSection.scrollIntoView({ behavior: "smooth" });
@@ -118,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const revealTargets = document.querySelectorAll(
-      ".benefit-card, .feature, .testimonial, .timeline-item, .section-header, .alliance-intro, .ally-card, .partner-footer, .contact-card, .contact-form, .presence-card, .presence-metric"
+      ".benefit-card, .feature, .testimonial, .timeline-item, .section-header, .alliance-intro, .ally-card, .partner-footer, .contact-card, .contact-form, .presence-card, .presence-metric, .faq-item"
     );
 
     if ("IntersectionObserver" in window) {
