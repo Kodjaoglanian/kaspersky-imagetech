@@ -1,47 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.querySelector(".nav-toggle");
-  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenu = document.querySelector(".mobile-menu");
   const floatingCta = document.querySelector(".floating-cta");
   const leadForm = document.querySelector(".lead-form");
 
-  const toggleMobileMenu = () => {
-    const isOpen = mobileMenu.classList.toggle("open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-  };
+  if (navToggle && mobileMenu) {
+    const toggleMobileMenu = () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    };
 
-  navToggle.addEventListener("click", () => {
-    toggleMobileMenu();
-  });
+    navToggle.addEventListener("click", toggleMobileMenu);
 
-  document.addEventListener("click", (event) => {
-    if (!mobileMenu.classList.contains("open")) return;
-    const clickInsideMenu = mobileMenu.contains(event.target);
-    const clickOnToggle = event.target === navToggle || navToggle.contains(event.target);
-    if (!clickInsideMenu && !clickOnToggle) {
-      mobileMenu.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-    }
-  });
-
-  const mq = window.matchMedia("(min-width: 901px)");
-  const handleMediaChange = (event) => {
-    if (event.matches) {
-      mobileMenu.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-    }
-  };
-  if (typeof mq.addEventListener === "function") {
-    mq.addEventListener("change", handleMediaChange);
-  } else if (typeof mq.addListener === "function") {
-    mq.addListener(handleMediaChange);
-  }
-
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
+    document.addEventListener("click", (event) => {
+      if (!mobileMenu.classList.contains("open")) return;
+      const clickInsideMenu = mobileMenu.contains(event.target);
+      const clickOnToggle = event.target === navToggle || navToggle.contains(event.target);
+      if (!clickInsideMenu && !clickOnToggle) {
+        mobileMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
     });
-  });
+
+    const mq = window.matchMedia("(min-width: 901px)");
+    const handleMediaChange = (event) => {
+      if (event.matches) {
+        mobileMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", handleMediaChange);
+    } else if (typeof mq.addListener === "function") {
+      mq.addListener(handleMediaChange);
+    }
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
   const toggleFloatingCta = () => {
     if (!floatingCta) return;
@@ -72,13 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
       setStatus("Enviando dados...");
 
       const formData = new FormData(leadForm);
-      const payload = Object.fromEntries(formData.entries());
+      formData.append("action", "kaspersky_submit_lead");
+      if (window.kasperskyTheme?.nonce) {
+        formData.append("nonce", window.kasperskyTheme.nonce);
+      }
 
       try {
-        const response = await fetch("/api/lead", {
+        const ajaxUrl = window.kasperskyTheme?.ajaxUrl || "/wp-admin/admin-ajax.php";
+        const response = await fetch(ajaxUrl, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
+          body: formData,
         });
 
         if (!response.ok) {
@@ -86,11 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const data = await response.json();
-        setStatus(data.message || "Recebemos seus dados!", "success");
+        if (!data.success) {
+          throw new Error(data?.data?.message || "Erro no processamento");
+        }
+
+        setStatus(window.kasperskyTheme?.successMessage || data?.data?.message || "Recebemos seus dados!", "success");
         leadForm.reset();
       } catch (error) {
         console.error(error);
-        setStatus("Não foi possível enviar agora. Tente novamente.", "error");
+        setStatus(window.kasperskyTheme?.errorMessage || "Não foi possível enviar agora. Tente novamente.", "error");
       } finally {
         if (submitBtn) submitBtn.disabled = false;
       }
@@ -141,6 +149,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .from(".hero-actions", { y: 30, opacity: 0 }, "-=0.25")
       .from(".hero-stats > div", { y: 30, opacity: 0, stagger: 0.12 }, "-=0.2")
       .from(".hero-visual", { x: 40, opacity: 0 }, "-=0.8");
+
+    heroTl.eventCallback("onComplete", () => {
+      gsap.set(
+        [".hero-text .eyebrow", ".hero-text h1", ".hero-text p", ".hero-actions", ".hero-stats > div"],
+        { clearProps: "all", opacity: 1, y: 0 }
+      );
+    });
 
     gsap.to(".hero-card", {
       y: -10,

@@ -126,6 +126,32 @@ app.post("/api/lead", (req, res) => {
 3. Configurar deploy automatizado (GitHub Actions → Registry → Host).
 4. Instrumentar analytics/observabilidade (GA4, Plausible, OpenTelemetry).
 
+## 🧩 Tema WordPress pronto
+
+Além da versão estática/Dockerizada, o repositório agora traz um tema WordPress completo em `wordpress-theme/kaspersky-imagetech/`, contendo:
+
+```
+wordpress-theme/
+└── kaspersky-imagetech/
+   ├── style.css              # Cabeçalho do tema + metadata
+   ├── functions.php          # Enfilestra assets, menu walker e Ajax do formulário
+   ├── front-page.php         # Página única com todas as seções da landing
+   ├── header.php / footer.php
+   └── assets/
+      ├── css/main.css       # Mesmo visual da landing original
+      ├── js/main.js         # Navegação mobile, animações e Ajax (via admin-ajax.php)
+      └── images/LOGO_escritabranca.png
+```
+
+**Como instalar rapidamente**
+
+1. Comprima a pasta `kaspersky-imagetech` ou copie-a para `wp-content/themes` do seu projeto WordPress.
+2. Ative o tema. Na primeira ativação ele cria automaticamente a página **“Kaspersky Landing”** já preenchida com o padrão de blocos e, se ainda não houver página inicial definida, deixa ela como *Página Inicial*.
+3. Para editar o site todo, abra a página “Kaspersky Landing” no editor de blocos (Gutenberg): cada seção (hero, soluções, parceria, contato, rodapé, CTA flutuante) está em blocos/grupos com as mesmas classes CSS — basta trocar textos, imagens ou duplicar cards diretamente pelo editor visual. Caso queira inserir o layout em outra página, use **Inserir ▸ Padrões ▸ Kaspersky Imagetech ▸ Landing page completa**.
+4. O menu/CTA/mobile menu fazem parte dos blocos atuais, então qualquer alteração é feita na própria página (não há dependência de *Aparência ▸ Menus*). O formulário permanece integrado ao `admin-ajax.php` (`kaspersky_submit_lead`) e envia e-mails para o `admin_email`.
+
+> ℹ️ O tema já inclui GSAP via CDN, animações, CTA flutuante e fallback para os anchors originais caso nenhum menu seja cadastrado.
+
 ---
 
 Feito com foco em performance, storytelling e prontos para ativar squads de segurança da **Imagetech + Kaspersky**. Ajuste, expanda e conecte às suas ferramentas corporativas conforme necessário. 🚀
