@@ -281,7 +281,7 @@ return [
   <!-- wp:group {"className":"logo-carousel","layout":{"type":"constrained"}} -->
   <div class="wp-block-group logo-carousel" aria-label="Clientes que confiam">
     <!-- wp:paragraph {"className":"logo-track"} -->
-    <p class="logo-track"><span class="logo-item">NovaWave</span><span class="logo-item">ArboPay</span><span class="logo-item">Atlas Connect</span><span class="logo-item">Digitronix</span><span class="logo-item">CorePulse</span><span class="logo-item">NovaWave</span><span class="logo-item">ArboPay</span><span class="logo-item">Atlas Connect</span><span class="logo-item">Digitronix</span><span class="logo-item">CorePulse</span></p>
+    <p class="logo-track"><span class="logo-item">Drebor Borrachas</span><span class="logo-item">Mix Nutri</span><span class="logo-item">Multicoisas</span><span class="logo-item">Conselho Federal de Administração (CFA)</span><span class="logo-item">Drebor Borrachas</span><span class="logo-item">Mix Nutri</span><span class="logo-item">Multicoisas</span><span class="logo-item">Conselho Federal de Administração (CFA)</span></p>
     <!-- /wp:paragraph -->
   </div>
   <!-- /wp:group -->
