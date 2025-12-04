@@ -8,7 +8,7 @@
 - **Experiência premium**: Hero com ribbon de parceria, métricas animadas, cards com glassmorphism e seções dedicadas a benefícios, recursos, alianças e presença do parceiro.
 - **Interação rica**: GSAP + IntersectionObserver para revelar conteúdo, CTA flutuante e cartões com efeito tilt.
 - **Lead form integrado**: Envia dados via `fetch` para `/api/lead`, mostra estados de carregamento/sucesso/erro e já respeita LGPD.
-- **Server-side com e-mail**: Express serve os arquivos estáticos e encaminha os leads por SMTP/Postfix usando Nodemailer.
+- **Server-side com e-mail**: Express serve os arquivos estáticos e encaminha os leads via SMTP direto para o relay (ex.: `192.168.250.51`) ou, opcionalmente, por comandos CLI (`mail`/`sendmail`).
 - **Containerização**: Dockerfile multi-stage gera imagem enxuta pronta para produção (Node 20 Alpine).
 
 ## 🧱 Stack Técnico
@@ -107,16 +107,36 @@ Configure-as via `.env` ou diretamente no `docker run`/serviço:
 | Variável                          | Padrão                             | Descrição |
 | --------------------------------- | ---------------------------------- | --------- |
 | `PORT`                            | `3000`                             | Porta HTTP do Express |
-| `SMTP_HOST`                       | `127.0.0.1`                        | Host do Postfix/SMTP |
-| `SMTP_PORT`                       | `25`                               | Porta do Postfix |
-| `SMTP_SECURE`                     | `false`                            | Usa TLS direto (STARTTLS não é necessário para Postfix local) |
-| `SMTP_TLS_REJECT_UNAUTHORIZED`    | `true`                             | Desative (`false`) caso use certificados self-signed |
-| `SMTP_USER` / `SMTP_PASS`         | _vazio_                            | Credenciais caso o Postfix exija autenticação |
-| `MAIL_FROM`                       | `no-reply@grupoimagetech.com.br`   | Remetente padrão (usado quando o lead não informar e-mail válido) |
+| `MAIL_STRATEGY`                   | `mail`                             | `smtp` para relay direto, `mail` (CLI) ou `sendmail` |
+| `SMTP_HOST`                       | `192.168.250.51`                   | Host do Postfix/SMTP (quando `MAIL_STRATEGY=smtp`) |
+| `SMTP_PORT`                       | `25`                               | Porta do Postfix/SMTP |
+| `SMTP_SECURE`                     | `false`                            | Define conexão SMTPS (não usar para porta 25 plana) |
+| `SMTP_TLS_REJECT_UNAUTHORIZED`    | `true`                             | Coloque `false` se o certificado for self-signed |
+| `SMTP_USER` / `SMTP_PASS`         | _vazio_                            | Preencha somente se o relay exigir autenticação |
+| `MAIL_CLI`                        | `mail`                             | Caminho do binário `mail`/`sendmail` quando não usar SMTP |
+| `MAIL_EXTRA_ARGS`                 | _vazio_                            | Flags adicionais para o comando CLI |
+| `MAIL_DISABLE_R`                  | `0`                                | Coloque `1` se o comando não aceitar `-r` para o remetente |
+| `MAIL_FROM`                       | `no-reply@grupoimagetech.com.br`   | Remetente aplicado ao envelope e cabeçalho |
 | `MAIL_TO`                         | `pmelo@grupoimagetech.com.br,lbittar@grupoimagetech.com.br` | Um ou mais destinatários separados por vírgula |
 | `MAIL_SUBJECT_PREFIX`             | `[Landing Kaspersky]`              | Prefixo do assunto |
 
 > Há um `.env.example` pronto para servir de base (`cp .env.example .env`).
+
+### Exemplo: relay interno 192.168.250.51 (sem autenticação)
+
+```dotenv
+MAIL_STRATEGY=smtp
+SMTP_HOST=192.168.250.51
+SMTP_PORT=25
+SMTP_SECURE=false
+SMTP_TLS_REJECT_UNAUTHORIZED=false
+SMTP_USER=
+SMTP_PASS=
+MAIL_FROM=no-reply@grupoimagetech.com.br
+MAIL_TO=pmelo@grupoimagetech.com.br,lbittar@grupoimagetech.com.br
+```
+
+Com esse ajuste o backend passa a falar diretamente com o Postfix do host, mantendo o remetente imposto e sem exigir autenticação. Se preferir continuar usando o comando `mail` do próprio servidor, basta trocar `MAIL_STRATEGY` para `mail` (ou `sendmail`) e garantir que o binário esteja disponível na imagem/VM.
 
 ## 🔌 API de Lead (`POST /api/lead`)
 

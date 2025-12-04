@@ -2,9 +2,41 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const { spawn } = require("child_process");
+const nodemailer = require("nodemailer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const mailStrategy = (process.env.MAIL_STRATEGY || "mail").toLowerCase();
+const mailCommand = process.env.MAIL_CLI || (mailStrategy === "sendmail" ? "/usr/sbin/sendmail" : "mail");
+const mailExtraArgs = (process.env.MAIL_EXTRA_ARGS || "")
+  .split(/[\s,]+/)
+  .map((entry) => entry.trim())
+  .filter(Boolean);
+const mailSupportsCustomSender = process.env.MAIL_DISABLE_R === "1" ? false : true;
+const smtpConfig = {
+  host: process.env.SMTP_HOST || "192.168.250.51",
+  port: Number(process.env.SMTP_PORT || 25),
+  secure: String(process.env.SMTP_SECURE || "false").toLowerCase() === "true",
+  tls: {
+    rejectUnauthorized: String(process.env.SMTP_TLS_REJECT_UNAUTHORIZED || "true").toLowerCase() === "true",
+  },
+};
+
+if (process.env.SMTP_USER) {
+  smtpConfig.auth = {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS || "",
+  };
+}
+
+let smtpTransport;
+const getSmtpTransport = () => {
+  if (!smtpTransport) {
+    smtpTransport = nodemailer.createTransport(smtpConfig);
+  }
+  return smtpTransport;
+};
 
 // Middlewares
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
@@ -68,14 +100,43 @@ const buildText = (payload) =>
     payload.mensagem || "(sem mensagem)",
   ].join("\n");
 
-const sendMailViaCli = ({ subject, body, from, recipients }) =>
+const sendMailViaSmtp = ({ subject, body, from, recipients, replyTo }) => {
+  const transporter = getSmtpTransport();
+  return transporter.sendMail({
+    from,
+    to: recipients,
+    subject,
+    text: body,
+    replyTo,
+    envelope: {
+      from,
+      to: recipients,
+    },
+  });
+};
+
+const sendMailViaCli = ({ subject, body, from, recipients, replyTo }) =>
   new Promise((resolve, reject) => {
     if (!recipients.length) {
       return reject(new Error("Nenhum destinatário configurado."));
     }
 
-    const args = ["-s", subject, "-r", from, ...recipients];
-    const mail = spawn("mail", args, { stdio: ["pipe", "ignore", "pipe"] });
+    const args = [];
+    if (mailStrategy === "sendmail") {
+      args.push("-t", "-oi");
+    } else {
+      args.push("-s", subject);
+      if (from && mailSupportsCustomSender) {
+        args.push("-r", from);
+      }
+    }
+
+    args.push(...mailExtraArgs);
+    if (mailStrategy !== "sendmail") {
+      args.push(...recipients);
+    }
+
+    const mail = spawn(mailCommand, args, { stdio: ["pipe", "ignore", "pipe"] });
     let stderr = "";
 
     mail.stderr.on("data", (chunk) => {
@@ -83,6 +144,11 @@ const sendMailViaCli = ({ subject, body, from, recipients }) =>
     });
 
     mail.on("error", (error) => {
+      if (error.code === "ENOENT") {
+        error = new Error(
+          `Comando de correio \"${mailCommand}\" não encontrado. Instale o binário ou configure a variável MAIL_CLI com o caminho correto.`
+        );
+      }
       reject(error);
     });
 
@@ -94,7 +160,20 @@ const sendMailViaCli = ({ subject, body, from, recipients }) =>
       }
     });
 
-    mail.stdin.write(body);
+    if (mailStrategy === "sendmail") {
+      const headers = [
+        from ? `From: ${from}` : null,
+        `To: ${recipients.join(", ")}`,
+        `Subject: ${subject}`,
+        replyTo ? `Reply-To: ${replyTo}` : null,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      mail.stdin.write(`${headers}\n\n${body}`);
+    } else {
+      mail.stdin.write(body);
+    }
     mail.stdin.end();
   });
 
@@ -119,12 +198,19 @@ app.post("/api/lead", async (req, res) => {
     const replyLine = replyToEmail ? `Responder para: ${replyToEmail}\n` : "";
     const body = `${replyLine}${buildText(payload)}\n`;
 
-    await sendMailViaCli({
+    const mailPayload = {
       subject,
       body,
       from: defaultFrom,
       recipients: defaultRecipients,
-    });
+      replyTo: replyToEmail,
+    };
+
+    if (mailStrategy === "smtp") {
+      await sendMailViaSmtp(mailPayload);
+    } else {
+      await sendMailViaCli(mailPayload);
+    }
 
     res.status(200).json({ message: "Recebemos seus dados! Em breve faremos contato." });
   } catch (error) {
