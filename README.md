@@ -120,7 +120,7 @@ Configure-as via `.env` ou diretamente no `docker run`/serviço:
 | `MAIL_TO`                         | `pmelo@grupoimagetech.com.br,lbittar@grupoimagetech.com.br` | Um ou mais destinatários separados por vírgula |
 | `MAIL_SUBJECT_PREFIX`             | `[Landing Kaspersky]`              | Prefixo do assunto |
 
-> Há um `.env.example` pronto para servir de base (`cp .env.example .env`).
+> Há um `.env.example` pronto para servir de base (`cp .env.example .env`). O servidor carrega automaticamente qualquer arquivo `.env` na raiz via `dotenv`, então basta reiniciar o processo/serviço após atualizar os valores.
 
 ### Exemplo: relay interno 192.168.250.51 (sem autenticação)
 
