@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-const nodemailer = require("nodemailer");
+const { spawn } = require("child_process");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,37 +20,12 @@ app.use("/assets", express.static(sharedAssetsDir));
 app.use("/kaspersky", express.static(kasperskyDir));
 app.use("/sonicwall", express.static(sonicwallDir));
 
-// Email transporter configured to talk with Postfix (or any SMTP server)
-const smtpHost = process.env.SMTP_HOST || "127.0.0.1";
-const smtpPort = Number(process.env.SMTP_PORT || 25);
-const smtpSecure = String(process.env.SMTP_SECURE || "false").toLowerCase() === "true";
-const rejectUnauthorized = String(process.env.SMTP_TLS_REJECT_UNAUTHORIZED || "true").toLowerCase() !== "false";
 const defaultFrom = process.env.MAIL_FROM || "no-reply@grupoimagetech.com.br";
-const enforcedRecipients = ["pmelo@grupoimagetech.com.br", "lbittar@grupoimagetech.com.br"];
-const defaultRecipients = (process.env.MAIL_TO || enforcedRecipients.join(","))
+const enforcedRecipients = process.env.MAIL_TO || "pmelo@grupoimagetech.com.br,lbittar@grupoimagetech.com.br";
+const defaultRecipients = enforcedRecipients
   .split(",")
   .map((entry) => entry.trim())
   .filter(Boolean);
-
-const smtpAuth = process.env.SMTP_USER && process.env.SMTP_PASS ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } : undefined;
-
-const transporter = nodemailer.createTransport({
-  host: smtpHost,
-  port: smtpPort,
-  secure: smtpSecure,
-  auth: smtpAuth,
-  tls: {
-    rejectUnauthorized,
-  },
-});
-
-transporter.verify((error) => {
-  if (error) {
-    console.warn("[mail] Falha ao verificar transporte SMTP:", error.message);
-  } else {
-    console.log(`[mail] Transporte SMTP pronto para ${smtpHost}:${smtpPort}`);
-  }
-});
 
 const requiredFields = ["nome", "email", "mensagem"];
 
@@ -82,18 +57,6 @@ const buildEmailPayload = (body = {}) => {
 const isValidEmail = (value = "") => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 const resolveReplyTo = (payload) => (isValidEmail(payload.email) ? payload.email : undefined);
 
-const buildHtml = (payload) => `
-  <h2>Novo lead recebido via landing Kaspersky + Imagetech</h2>
-  <ul>
-    <li><strong>Nome:</strong> ${escapeHtml(payload.nome) || "(não informado)"}</li>
-    <li><strong>Empresa:</strong> ${escapeHtml(payload.empresa) || "(não informado)"}</li>
-    <li><strong>E-mail:</strong> ${escapeHtml(payload.email) || "(não informado)"}</li>
-    <li><strong>Telefone:</strong> ${escapeHtml(payload.telefone) || "(não informado)"}</li>
-  </ul>
-  <p><strong>Mensagem:</strong></p>
-  <p style="white-space: pre-line;">${escapeHtml(payload.mensagem) || "(sem mensagem)"}</p>
-`;
-
 const buildText = (payload) =>
   [
     "Novo lead recebido via landing Kaspersky + Imagetech",
@@ -104,6 +67,36 @@ const buildText = (payload) =>
     "Mensagem:",
     payload.mensagem || "(sem mensagem)",
   ].join("\n");
+
+const sendMailViaCli = ({ subject, body, from, recipients }) =>
+  new Promise((resolve, reject) => {
+    if (!recipients.length) {
+      return reject(new Error("Nenhum destinatário configurado."));
+    }
+
+    const args = ["-s", subject, "-r", from, ...recipients];
+    const mail = spawn("mail", args, { stdio: ["pipe", "ignore", "pipe"] });
+    let stderr = "";
+
+    mail.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+    });
+
+    mail.on("error", (error) => {
+      reject(error);
+    });
+
+    mail.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(stderr || `mail finalizado com código ${code}`));
+      }
+    });
+
+    mail.stdin.write(body);
+    mail.stdin.end();
+  });
 
 app.post("/api/lead", async (req, res) => {
   try {
@@ -123,17 +116,14 @@ app.post("/api/lead", async (req, res) => {
     }`;
 
     const replyToEmail = resolveReplyTo(payload);
-    await transporter.sendMail({
-      from: defaultFrom,
-      to: defaultRecipients,
-      replyTo: replyToEmail,
-      envelope: {
-        from: defaultFrom,
-        to: defaultRecipients,
-      },
+    const replyLine = replyToEmail ? `Responder para: ${replyToEmail}\n` : "";
+    const body = `${replyLine}${buildText(payload)}\n`;
+
+    await sendMailViaCli({
       subject,
-      text: buildText(payload),
-      html: buildHtml(payload),
+      body,
+      from: defaultFrom,
+      recipients: defaultRecipients,
     });
 
     res.status(200).json({ message: "Recebemos seus dados! Em breve faremos contato." });
