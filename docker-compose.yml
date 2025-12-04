@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: kaspersky-landing
+    build:
+      context: .
+      target: runner
+    ports:
+      - "3009:3000"
+    env_file:
+      - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

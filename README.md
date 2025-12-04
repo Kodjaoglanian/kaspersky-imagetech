@@ -100,6 +100,18 @@ docker run --rm \
 
 O container usa somente dependências de produção (`npm ci --omit=dev`), mantendo a imagem enxuta e segura.
 
+### Docker Compose
+
+Para evitar redigitar o comando longo, há um `docker-compose.yml` na raiz. Ele já embute o build, publica a porta `3009` e injeta o alias `host.docker.internal`:
+
+```bash
+docker compose up -d --build
+# Para parar/remover
+docker compose down
+```
+
+Altere o mapeamento de porta ou o arquivo `.env` conforme necessário antes de subir.
+
 ## 📮 Variáveis de Ambiente (SMTP/Postfix)
 
 Configure-as via `.env` ou diretamente no `docker run`/serviço:
