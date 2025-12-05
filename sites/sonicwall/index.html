@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="pt-BR"><head><style type="text/css">:root{--toastify-color-light: #fff;--toastify-color-dark: #121212;--toastify-color-info: #3498db;--toastify-color-success: #07bc0c;--toastify-color-warning: #f1c40f;--toastify-color-error: hsl(6, 78%, 57%);--toastify-color-transparent: rgba(255, 255, 255, .7);--toastify-icon-color-info: var(--toastify-color-info);--toastify-icon-color-success: var(--toastify-color-success);--toastify-icon-color-warning: var(--toastify-color-warning);--toastify-icon-color-error: var(--toastify-color-error);--toastify-container-width: fit-content;--toastify-toast-width: 320px;--toastify-toast-offset: 16px;--toastify-toast-top: max(var(--toastify-toast-offset), env(safe-area-inset-top));--toastify-toast-right: max(var(--toastify-toast-offset), env(safe-area-inset-right));--toastify-toast-left: max(var(--toastify-toast-offset), env(safe-area-inset-left));--toastify-toast-bottom: max(var(--toastify-toast-offset), env(safe-area-inset-bottom));--toastify-toast-background: #fff;--toastify-toast-padding: 14px;--toastify-toast-min-height: 64px;--toastify-toast-max-height: 800px;--toastify-toast-bd-radius: 6px;--toastify-toast-shadow: 0px 4px 12px rgba(0, 0, 0, .1);--toastify-font-family: sans-serif;--toastify-z-index: 9999;--toastify-text-color-light: #757575;--toastify-text-color-dark: #fff;--toastify-text-color-info: #fff;--toastify-text-color-success: #fff;--toastify-text-color-warning: #fff;--toastify-text-color-error: #fff;--toastify-spinner-color: #616161;--toastify-spinner-color-empty-area: #e0e0e0;--toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);--toastify-color-progress-dark: #bb86fc;--toastify-color-progress-info: var(--toastify-color-info);--toastify-color-progress-success: var(--toastify-color-success);--toastify-color-progress-warning: var(--toastify-color-warning);--toastify-color-progress-error: var(--toastify-color-error);--toastify-color-progress-bgo: .2}.Toastify__toast-container{z-index:var(--toastify-z-index);-webkit-transform:translate3d(0,0,var(--toastify-z-index));position:fixed;width:var(--toastify-container-width);box-sizing:border-box;color:#fff;display:flex;flex-direction:column}.Toastify__toast-container--top-left{top:var(--toastify-toast-top);left:var(--toastify-toast-left)}.Toastify__toast-container--top-center{top:var(--toastify-toast-top);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--top-right{top:var(--toastify-toast-top);right:var(--toastify-toast-right);align-items:end}.Toastify__toast-container--bottom-left{bottom:var(--toastify-toast-bottom);left:var(--toastify-toast-left)}.Toastify__toast-container--bottom-center{bottom:var(--toastify-toast-bottom);left:50%;transform:translate(-50%);align-items:center}.Toastify__toast-container--bottom-right{bottom:var(--toastify-toast-bottom);right:var(--toastify-toast-right);align-items:end}.Toastify__toast{--y: 0;position:relative;touch-action:none;width:var(--toastify-toast-width);min-height:var(--toastify-toast-min-height);box-sizing:border-box;margin-bottom:1rem;padding:var(--toastify-toast-padding);border-radius:var(--toastify-toast-bd-radius);box-shadow:var(--toastify-toast-shadow);max-height:var(--toastify-toast-max-height);font-family:var(--toastify-font-family);z-index:0;display:flex;flex:1 auto;align-items:center;word-break:break-word}@media only screen and (max-width: 480px){.Toastify__toast-container{width:100vw;left:env(safe-area-inset-left);margin:0}.Toastify__toast-container--top-left,.Toastify__toast-container--top-center,.Toastify__toast-container--top-right{top:env(safe-area-inset-top);transform:translate(0)}.Toastify__toast-container--bottom-left,.Toastify__toast-container--bottom-center,.Toastify__toast-container--bottom-right{bottom:env(safe-area-inset-bottom);transform:translate(0)}.Toastify__toast-container--rtl{right:env(safe-area-inset-right);left:initial}.Toastify__toast{--toastify-toast-width: 100%;margin-bottom:0;border-radius:0}}.Toastify__toast-container[data-stacked=true]{width:var(--toastify-toast-width)}.Toastify__toast--stacked{position:absolute;width:100%;transform:translate3d(0,var(--y),0) scale(var(--s));transition:transform .3s}.Toastify__toast--stacked[data-collapsed] .Toastify__toast-body,.Toastify__toast--stacked[data-collapsed] .Toastify__close-button{transition:opacity .1s}.Toastify__toast--stacked[data-collapsed=false]{overflow:visible}.Toastify__toast--stacked[data-collapsed=true]:not(:last-child)>*{opacity:0}.Toastify__toast--stacked:after{content:"";position:absolute;left:0;right:0;height:calc(var(--g) * 1px);bottom:100%}.Toastify__toast--stacked[data-pos=top]{top:0}.Toastify__toast--stacked[data-pos=bot]{bottom:0}.Toastify__toast--stacked[data-pos=bot].Toastify__toast--stacked:before{transform-origin:top}.Toastify__toast--stacked[data-pos=top].Toastify__toast--stacked:before{transform-origin:bottom}.Toastify__toast--stacked:before{content:"";position:absolute;left:0;right:0;bottom:0;height:100%;transform:scaleY(3);z-index:-1}.Toastify__toast--rtl{direction:rtl}.Toastify__toast--close-on-click{cursor:pointer}.Toastify__toast-icon{margin-inline-end:10px;width:22px;flex-shrink:0;display:flex}.Toastify--animate{animation-fill-mode:both;animation-duration:.5s}.Toastify--animate-icon{animation-fill-mode:both;animation-duration:.3s}.Toastify__toast-theme--dark{background:var(--toastify-color-dark);color:var(--toastify-text-color-dark)}.Toastify__toast-theme--light,.Toastify__toast-theme--colored.Toastify__toast--default{background:var(--toastify-color-light);color:var(--toastify-text-color-light)}.Toastify__toast-theme--colored.Toastify__toast--info{color:var(--toastify-text-color-info);background:var(--toastify-color-info)}.Toastify__toast-theme--colored.Toastify__toast--success{color:var(--toastify-text-color-success);background:var(--toastify-color-success)}.Toastify__toast-theme--colored.Toastify__toast--warning{color:var(--toastify-text-color-warning);background:var(--toastify-color-warning)}.Toastify__toast-theme--colored.Toastify__toast--error{color:var(--toastify-text-color-error);background:var(--toastify-color-error)}.Toastify__progress-bar-theme--light{background:var(--toastify-color-progress-light)}.Toastify__progress-bar-theme--dark{background:var(--toastify-color-progress-dark)}.Toastify__progress-bar--info{background:var(--toastify-color-progress-info)}.Toastify__progress-bar--success{background:var(--toastify-color-progress-success)}.Toastify__progress-bar--warning{background:var(--toastify-color-progress-warning)}.Toastify__progress-bar--error{background:var(--toastify-color-progress-error)}.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning,.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error{background:var(--toastify-color-transparent)}.Toastify__close-button{color:#fff;position:absolute;top:6px;right:6px;background:transparent;outline:none;border:none;padding:0;cursor:pointer;opacity:.7;transition:.3s ease;z-index:1}.Toastify__toast--rtl .Toastify__close-button{left:6px;right:unset}.Toastify__close-button--light{color:#000;opacity:.3}.Toastify__close-button>svg{fill:currentColor;height:16px;width:14px}.Toastify__close-button:hover,.Toastify__close-button:focus{opacity:1}@keyframes Toastify__trackProgress{0%{transform:scaleX(1)}to{transform:scaleX(0)}}.Toastify__progress-bar{position:absolute;bottom:0;left:0;width:100%;height:100%;z-index:1;opacity:.7;transform-origin:left}.Toastify__progress-bar--animated{animation:Toastify__trackProgress linear 1 forwards}.Toastify__progress-bar--controlled{transition:transform .2s}.Toastify__progress-bar--rtl{right:0;left:initial;transform-origin:right;border-bottom-left-radius:initial}.Toastify__progress-bar--wrp{position:absolute;overflow:hidden;bottom:0;left:0;width:100%;height:5px;border-bottom-left-radius:var(--toastify-toast-bd-radius);border-bottom-right-radius:var(--toastify-toast-bd-radius)}.Toastify__progress-bar--wrp[data-hidden=true]{opacity:0}.Toastify__progress-bar--bg{opacity:var(--toastify-color-progress-bgo);width:100%;height:100%}.Toastify__spinner{width:20px;height:20px;box-sizing:border-box;border:2px solid;border-radius:100%;border-color:var(--toastify-spinner-color-empty-area);border-right-color:var(--toastify-spinner-color);animation:Toastify__spin .65s linear infinite}@keyframes Toastify__bounceInRight{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(3000px,0,0)}60%{opacity:1;transform:translate3d(-25px,0,0)}75%{transform:translate3d(10px,0,0)}90%{transform:translate3d(-5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutRight{20%{opacity:1;transform:translate3d(-20px,var(--y),0)}to{opacity:0;transform:translate3d(2000px,var(--y),0)}}@keyframes Toastify__bounceInLeft{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(-3000px,0,0)}60%{opacity:1;transform:translate3d(25px,0,0)}75%{transform:translate3d(-10px,0,0)}90%{transform:translate3d(5px,0,0)}to{transform:none}}@keyframes Toastify__bounceOutLeft{20%{opacity:1;transform:translate3d(20px,var(--y),0)}to{opacity:0;transform:translate3d(-2000px,var(--y),0)}}@keyframes Toastify__bounceInUp{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,3000px,0)}60%{opacity:1;transform:translate3d(0,-20px,0)}75%{transform:translate3d(0,10px,0)}90%{transform:translate3d(0,-5px,0)}to{transform:translateZ(0)}}@keyframes Toastify__bounceOutUp{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,-2000px,0)}}@keyframes Toastify__bounceInDown{0%,60%,75%,90%,to{animation-timing-function:cubic-bezier(.215,.61,.355,1)}0%{opacity:0;transform:translate3d(0,-3000px,0)}60%{opacity:1;transform:translate3d(0,25px,0)}75%{transform:translate3d(0,-10px,0)}90%{transform:translate3d(0,5px,0)}to{transform:none}}@keyframes Toastify__bounceOutDown{20%{transform:translate3d(0,calc(var(--y) - 10px),0)}40%,45%{opacity:1;transform:translate3d(0,calc(var(--y) + 20px),0)}to{opacity:0;transform:translate3d(0,2000px,0)}}.Toastify__bounce-enter--top-left,.Toastify__bounce-enter--bottom-left{animation-name:Toastify__bounceInLeft}.Toastify__bounce-enter--top-right,.Toastify__bounce-enter--bottom-right{animation-name:Toastify__bounceInRight}.Toastify__bounce-enter--top-center{animation-name:Toastify__bounceInDown}.Toastify__bounce-enter--bottom-center{animation-name:Toastify__bounceInUp}.Toastify__bounce-exit--top-left,.Toastify__bounce-exit--bottom-left{animation-name:Toastify__bounceOutLeft}.Toastify__bounce-exit--top-right,.Toastify__bounce-exit--bottom-right{animation-name:Toastify__bounceOutRight}.Toastify__bounce-exit--top-center{animation-name:Toastify__bounceOutUp}.Toastify__bounce-exit--bottom-center{animation-name:Toastify__bounceOutDown}@keyframes Toastify__zoomIn{0%{opacity:0;transform:scale3d(.3,.3,.3)}50%{opacity:1}}@keyframes Toastify__zoomOut{0%{opacity:1}50%{opacity:0;transform:translate3d(0,var(--y),0) scale3d(.3,.3,.3)}to{opacity:0}}.Toastify__zoom-enter{animation-name:Toastify__zoomIn}.Toastify__zoom-exit{animation-name:Toastify__zoomOut}@keyframes Toastify__flipIn{0%{transform:perspective(400px) rotateX(90deg);animation-timing-function:ease-in;opacity:0}40%{transform:perspective(400px) rotateX(-20deg);animation-timing-function:ease-in}60%{transform:perspective(400px) rotateX(10deg);opacity:1}80%{transform:perspective(400px) rotateX(-5deg)}to{transform:perspective(400px)}}@keyframes Toastify__flipOut{0%{transform:translate3d(0,var(--y),0) perspective(400px)}30%{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(-20deg);opacity:1}to{transform:translate3d(0,var(--y),0) perspective(400px) rotateX(90deg);opacity:0}}.Toastify__flip-enter{animation-name:Toastify__flipIn}.Toastify__flip-exit{animation-name:Toastify__flipOut}@keyframes Toastify__slideInRight{0%{transform:translate3d(110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInLeft{0%{transform:translate3d(-110%,0,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInUp{0%{transform:translate3d(0,110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideInDown{0%{transform:translate3d(0,-110%,0);visibility:visible}to{transform:translate3d(0,var(--y),0)}}@keyframes Toastify__slideOutRight{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(110%,var(--y),0)}}@keyframes Toastify__slideOutLeft{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(-110%,var(--y),0)}}@keyframes Toastify__slideOutDown{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,500px,0)}}@keyframes Toastify__slideOutUp{0%{transform:translate3d(0,var(--y),0)}to{visibility:hidden;transform:translate3d(0,-500px,0)}}.Toastify__slide-enter--top-left,.Toastify__slide-enter--bottom-left{animation-name:Toastify__slideInLeft}.Toastify__slide-enter--top-right,.Toastify__slide-enter--bottom-right{animation-name:Toastify__slideInRight}.Toastify__slide-enter--top-center{animation-name:Toastify__slideInDown}.Toastify__slide-enter--bottom-center{animation-name:Toastify__slideInUp}.Toastify__slide-exit--top-left,.Toastify__slide-exit--bottom-left{animation-name:Toastify__slideOutLeft;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-right,.Toastify__slide-exit--bottom-right{animation-name:Toastify__slideOutRight;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--top-center{animation-name:Toastify__slideOutUp;animation-timing-function:ease-in;animation-duration:.3s}.Toastify__slide-exit--bottom-center{animation-name:Toastify__slideOutDown;animation-timing-function:ease-in;animation-duration:.3s}@keyframes Toastify__spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonicWall + Grupo Imagetech | Defesa Perimetral</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  <meta id="dcngeagmmhegagicpcmpinaoklddcgon"><link rel="stylesheet" href="chrome-extension://aiamjjeggglngiggkmmbnpnpeejjejaf/index.css"></head>
+  <body><div id="rss-app"></div>
     <header class="hero" id="hero">
       <div class="hero-glow"></div>
       <div class="hero-grid"></div>
@@ -21,7 +17,7 @@
           <div class="logo">SonicWall</div>
           <span class="brand-divider" aria-hidden="true"></span>
           <div class="partner-mark">
-            <img src="/assets/images/LOGO_escritabranca.png" alt="Grupo Imagetech" />
+            <img src="/assets/images/LOGO_escritabranca.png" alt="Grupo Imagetech">
           </div>
         </div>
         <ul class="nav-links">
@@ -65,41 +61,33 @@
       </div>
       <div class="hero-content">
         <div class="hero-text">
-          <p class="eyebrow">Firewall-as-a-Service + Zero Trust</p>
-          <h1>Edge Security SonicWall com squads Imagetech</h1>
-          <p>
-            Segmentação, inspeção TLS e resposta coordenada para proteger filiais, data centers e workloads multicloud com a velocidade que o board exige.
-          </p>
+          <p class="eyebrow">Segurança Digital Avançada</p>
+          <h1>Proteja sua empresa contra ameaças cibernéticas</h1>
+          <p>Com a parceria entre o Grupo Imagetech e a SonicWall, oferecemos uma solução robusta de cibersegurança corporativa, combinando tecnologia de ponta, equipe especializada e monitoramento ativo para proteger sua infraestrutura, dados e pessoas</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn primary">Desenhar arquitetura</a>
+            <a href="#contact" class="btn primary">Fale Conosco</a>
           </div>
           <div class="hero-stats">
             <div>
-              <strong>4,3M+</strong>
-              <span>intrusões bloqueadas/dia</span>
+              <strong>+1,1 M</strong>
+              <span>de ataques bloqueados por hora globalmente</span>
             </div>
             <div>
-              <strong>120+</strong>
-              <span>playbooks SSE validados</span>
+              <strong>+28 M</strong>
+              <span>de malwares detectados diariamente</span>
             </div>
+            
             <div>
-              <strong>25 SOCs</strong>
-              <span>benchmarked com Imagetech</span>
-            </div>
-            <div>
-              <strong>15 min</strong>
-              <span>para onboarding remoto</span>
+              <strong>+ 500 mil</strong>
+              <span>clientes protegidos em mais de 215 países</span>
             </div>
           </div>
         </div>
         <div class="hero-visual">
-          <img
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
-            alt="Analistas monitorando ameaças"
-          />
+          <img src="/assets/images/Foto noc.jpg" alt="Analistas monitorando ameaças">
           <div class="hero-card">
-            <p>Edge Shield</p>
-            <strong>Zero Trust Ready</strong>
+            <p>SOC</p>
+            <strong>Monitoramento 24/7</strong>
           </div>
         </div>
       </div>
@@ -112,45 +100,39 @@
         <p>Do perímetro ao cloud edge, operamos SonicWall com telemetria unificada e squads certificados.</p>
       </div>
       <div class="solution-grid">
-        <article class="solution-card" data-delay="0">
+        <article class="solution-card" data-delay="0" style="--card-rotate-x: 0deg; --card-rotate-y: 0deg; --card-glow-x: 50%; --card-glow-y: 15%;">
           <div class="icon-shell">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3 7h18v10H3z" />
-              <path d="M7 4h10" />
-              <path d="M8 17v3" />
-              <path d="M16 17v3" />
+              <path d="M3 7h18v10H3z"></path>
+              <path d="M7 4h10"></path>
+              <path d="M8 17v3"></path>
+              <path d="M16 17v3"></path>
             </svg>
           </div>
-          <h3>Firewalls & SD-WAN gerenciados</h3>
-          <p>
-            Appliances SonicWall de última geração com políticas dinâmicas, failover automático e visibilidade por filial.
-          </p>
+          <h3>Proteção em tempo real com Firewalls de Próxima geração (NGFW)</h3>
+          <p>Tenha inspeção de tráfego criptografado e identificação de ameaças avançadas que soluções tradicionais não detectam. Sua empresa recebe proteção contínua com performance elevada e baixa latência.</p>
         </article>
-        <article class="solution-card" data-delay="0.08">
+        <article class="solution-card" data-delay="0.08" style="--card-rotate-x: 0deg; --card-rotate-y: 0deg; --card-glow-x: 50%; --card-glow-y: 15%;">
           <div class="icon-shell">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v5l3 2" />
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 2"></path>
             </svg>
           </div>
-          <h3>Capture ATP + NSM</h3>
-          <p>
-            Análise em sandbox, inspeção TLS 1.3 e Network Security Manager para orquestrar políticas em segundos.
-          </p>
+          <h3>Implantação, suporte e monitoramento sem custo adicional</h3>
+          <p>Nossos especialistas cuidam da implantação, configuração, suporte e monitoramento, sem custos adicionais.</p>
         </article>
-        <article class="solution-card" data-delay="0.16">
+        <article class="solution-card" data-delay="0.16" style="--card-rotate-x: 0deg; --card-rotate-y: 0deg; --card-glow-x: 50%; --card-glow-y: 15%;">
           <div class="icon-shell">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 12a5 5 0 0 1 10 0v6H7z" />
-              <path d="M5 18h14" />
-              <path d="M9 18v2" />
-              <path d="M15 18v2" />
+              <path d="M7 12a5 5 0 0 1 10 0v6H7z"></path>
+              <path d="M5 18h14"></path>
+              <path d="M9 18v2"></path>
+              <path d="M15 18v2"></path>
             </svg>
           </div>
-          <h3>SOC Imagetech 24/7</h3>
-          <p>
-            Especialistas correlacionam alertas, aplicam playbooks SonicWall e sustentam auditorias e reports executivos.
-          </p>
+          <h3>Centro de operações de Segurança - SOC </h3>
+          <p>Nosso SOC monitora seu ambiente em tempo real, 24/7, detectando e respondendo a incidentes antes que se tornem críticos.</p>
         </article>
       </div>
     </section>
@@ -159,12 +141,13 @@
       <div class="alliance-shell">
         <div class="alliance-copy" data-delay="0">
           <p class="eyebrow">Parceria elite</p>
-          <h2>SonicWall + Grupo Imagetech</h2>
-          <p>Operação conjunta que entrega estratégia, deploy e suporte avançado em um único squad.</p>
+          <h2>O Grupo Imagetech é Platinum Partner SonicWall!</h2>
+          <p>Certificação que garante a de entrega estratégia, deploy e suporte avançado em um único squad.</p>
           <ul class="alliance-points">
-            <li>Arquitetura Zero Trust pronta para ambientes híbridos.</li>
-            <li>Desk em português com SLAs agressivos e runbooks compartilhados.</li>
-            <li>Relatórios executivos com postura, riscos e roadmap trimestral.</li>
+            <li style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+              <img src="/assets/images/sonicwall-platinum.png" alt="Selo Platinum Partner SonicWall" style="max-width: 250px; height: auto;">
+              <img src="/assets/images/LOGO_escritabranca.png" alt="Logo Grupo Imagetech" style="max-width: 200px; height: auto;">
+            </li>
           </ul>
         </div>
         <div class="alliance-panel" data-delay="0.08">
@@ -176,63 +159,204 @@
             <h3>Playbooks prontos</h3>
             <p>Procedimentos para fusões, SD-Branch, OT e auditorias críticas já validados com SonicWall.</p>
           </div>
-        </div>
+        <div>
+            <h3>Ampla experiência no mercado</h3>
+            <p>São mais de 20 anos atendendo os segmentos públicos e privados, com diferentes níveis de ambiente e maturidade.</p>
+          </div></div>
       </div>
     </section>
 
     <section class="testimonials" id="testimonials">
       <div class="section-header">
-        <p class="eyebrow">Casos em produção</p>
-        <h2>Menos brechas, mais visibilidade</h2>
-        <p>Empresas que conectaram SonicWall ao ecossistema Imagetech para operar em alta disponibilidade.</p>
+        <p class="eyebrow">Clientes</p>
+        <h2>Confiança e Credibilidade</h2>
+        <p>São mais de 20 anos de atuação no mercado público e privado, garantindo os mais elevaods padrões de segurança cibernética</p>
       </div>
       <div class="logo-carousel" aria-label="Clientes que confiam">
         <div class="logo-rows">
           <div class="logo-row">
             <article class="logo-item" data-accent="embers">
-              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy">
               <span class="logo-chip">Manufatura</span>
               <strong>Drebor Borrachas</strong>
               <span class="logo-meta">Edge + SD-WAN sincronizados</span>
             </article>
             <article class="logo-item" data-accent="flame">
-              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy">
               <span class="logo-chip">Food</span>
               <strong>Mix Nutri</strong>
               <span class="logo-meta">Compliance LGPD + NSE</span>
             </article>
             <article class="logo-item" data-accent="ice">
-              <img class="logo-mark" src="/assets/logos/multicoisas.png" alt="Logo Multicoisas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/multicoisas.svg" alt="Logo Multicoisas" loading="lazy">
               <span class="logo-chip">Varejo</span>
               <strong>Multicoisas</strong>
               <span class="logo-meta">+320 lojas segmentadas</span>
             </article>
             <article class="logo-item" data-accent="embers">
-              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy">
               <span class="logo-chip">Entidade federal</span>
               <strong>CFA</strong>
               <span class="logo-meta">SOC compartilhado + NSM</span>
             </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CASTILHO CONTABILIDADE.png" alt="Logo Castilho Assessoria Contábil" loading="lazy">
+              <span class="logo-chip">Contabilidade</span>
+              <strong>Castilho Assessoria Contábil</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Conselho Regional de Contabilidade - CRC MS.png" alt="Logo Conselho Regional de Contabilidade - CRC/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRC/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Conselho Regional de Medicina - CRM MS.png" alt="Logo Conselho Regional de Medicina - CRM/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRM/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-cotin.png" alt="Logo Coordenadoria de Tecnologia da Informação - SEFAZ/COTIN" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>SEFAZ/COTIN</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CRA MS.png" alt="Logo CRA/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRA/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CREA MS.svg" alt="Logo CREA/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CREA/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/LOGO_HDO_ENGENHARIA.jpg" alt="Logo HDO Engenharia" loading="lazy">
+              <span class="logo-chip">Engenharia</span>
+              <strong>HDO Engenharia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/HOSPITAL SCALLA.jfif" alt="Logo Hospital Scalla" loading="lazy">
+              <span class="logo-chip">Saúde</span>
+              <strong>Hospital Scalla</strong>
+              <span class="logo-meta">Proteção hospitalar</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Infortech.png" alt="Logo Infortech Tecnologia" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>Infortech Tecnologia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/LOG ENGENHARIA.png" alt="Logo Log Engenharia" loading="lazy">
+              <span class="logo-chip">Engenharia</span>
+              <strong>Log Engenharia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-mil-tec.png" alt="Logo Miltec Tecnologia" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>Miltec Tecnologia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Pimentel e Mochi.svg" alt="Logo Pimentel Mochi Advogados" loading="lazy">
+              <span class="logo-chip">Advocacia</span>
+              <strong>Pimentel Mochi Advogados</strong>
+              <span class="logo-meta">Proteção jurídica</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Prefeitura de Brasilândia.png" alt="Logo Prefeitura de Brasilândia/MS" loading="lazy">
+              <span class="logo-chip">Poder Público</span>
+              <strong>Prefeitura de Brasilândia/MS</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/PREFEITURA DE PORTO FERREIRA - SP.png" alt="Logo Prefeitura de Porto Ferreira/SP" loading="lazy">
+              <span class="logo-chip">Poder Público</span>
+              <strong>Prefeitura de Porto Ferreira/SP</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Sebrae.svg.png" alt="Logo Sebrae/MS" loading="lazy">
+              <span class="logo-chip">Desenvolvimento</span>
+              <strong>Sebrae/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SED MS.png" alt="Logo Secretaria de Educação - SED/MS" loading="lazy">
+              <span class="logo-chip">Educação</span>
+              <strong>SED/MS</strong>
+              <span class="logo-meta">Proteção educacional</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-sefaz-azul.png" alt="Logo Secretaria de Fazenda - SEFAZ/MS" loading="lazy">
+              <span class="logo-chip">Fazenda</span>
+              <strong>SEFAZ/MS</strong>
+              <span class="logo-meta">Proteção fiscal</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SES.webp" alt="Logo Secretaria de Saúde - SES/MS" loading="lazy">
+              <span class="logo-chip">Saúde</span>
+              <strong>SES/MS</strong>
+              <span class="logo-meta">Proteção hospitalar</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SENAR MS.png" alt="Logo SENAR/MS" loading="lazy">
+              <span class="logo-chip">Agronegócio</span>
+              <strong>SENAR/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/TODESCHINI.png" alt="Logo Todeschini" loading="lazy">
+              <span class="logo-chip">Varejo</span>
+              <strong>Todeschini</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-tce-2020.png" alt="Logo Tribunal de Contas - TCE/MS" loading="lazy">
+              <span class="logo-chip">Tribunal</span>
+              <strong>TCE/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/UFGD.png" alt="Logo Universidade Federal da Grande Dourados - UFGD" loading="lazy">
+              <span class="logo-chip">Educação</span>
+              <strong>UFGD</strong>
+              <span class="logo-meta">Proteção educacional</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/vcp-logo.png" alt="Logo VCP Pericias" loading="lazy">
+              <span class="logo-chip">Perícias</span>
+              <strong>VCP Pericias</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
             <article class="logo-item" data-accent="embers" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy">
               <span class="logo-chip">Manufatura</span>
               <strong>Drebor Borrachas</strong>
               <span class="logo-meta">Edge + SD-WAN sincronizados</span>
             </article>
             <article class="logo-item" data-accent="flame" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy">
               <span class="logo-chip">Food</span>
               <strong>Mix Nutri</strong>
               <span class="logo-meta">Compliance LGPD + NSE</span>
             </article>
             <article class="logo-item" data-accent="ice" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/multicoisas.png" alt="Logo Multicoisas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/multicoisas.svg" alt="Logo Multicoisas" loading="lazy">
               <span class="logo-chip">Varejo</span>
               <strong>Multicoisas</strong>
               <span class="logo-meta">+320 lojas segmentadas</span>
             </article>
             <article class="logo-item" data-accent="embers" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy">
               <span class="logo-chip">Entidade federal</span>
               <strong>CFA</strong>
               <span class="logo-meta">SOC compartilhado + NSM</span>
@@ -240,49 +364,187 @@
           </div>
           <div class="logo-row" data-direction="reverse">
             <article class="logo-item" data-accent="ice">
-              <img class="logo-mark" src="/assets/logos/multicoisas.png" alt="Logo Multicoisas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/multicoisas.svg" alt="Logo Multicoisas" loading="lazy">
               <span class="logo-chip">Varejo</span>
               <strong>Multicoisas</strong>
               <span class="logo-meta">+320 lojas segmentadas</span>
             </article>
             <article class="logo-item" data-accent="embers">
-              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy">
               <span class="logo-chip">Entidade federal</span>
               <strong>CFA</strong>
               <span class="logo-meta">SOC compartilhado + NSM</span>
             </article>
             <article class="logo-item" data-accent="embers">
-              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy">
               <span class="logo-chip">Manufatura</span>
               <strong>Drebor Borrachas</strong>
               <span class="logo-meta">Edge + SD-WAN sincronizados</span>
             </article>
             <article class="logo-item" data-accent="flame">
-              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy">
               <span class="logo-chip">Food</span>
               <strong>Mix Nutri</strong>
               <span class="logo-meta">Compliance LGPD + NSE</span>
             </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CASTILHO CONTABILIDADE.png" alt="Logo Castilho Assessoria Contábil" loading="lazy">
+              <span class="logo-chip">Contabilidade</span>
+              <strong>Castilho Assessoria Contábil</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Conselho Regional de Contabilidade - CRC MS.png" alt="Logo Conselho Regional de Contabilidade - CRC/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRC/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Conselho Regional de Medicina - CRM MS.png" alt="Logo Conselho Regional de Medicina - CRM/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRM/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-cotin.png" alt="Logo Coordenadoria de Tecnologia da Informação - SEFAZ/COTIN" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>SEFAZ/COTIN</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CRA MS.png" alt="Logo CRA/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CRA/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/CREA MS.svg" alt="Logo CREA/MS" loading="lazy">
+              <span class="logo-chip">Conselho Regional</span>
+              <strong>CREA/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/LOGO_HDO_ENGENHARIA.jpg" alt="Logo HDO Engenharia" loading="lazy">
+              <span class="logo-chip">Engenharia</span>
+              <strong>HDO Engenharia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/HOSPITAL SCALLA.jfif" alt="Logo Hospital Scalla" loading="lazy">
+              <span class="logo-chip">Saúde</span>
+              <strong>Hospital Scalla</strong>
+              <span class="logo-meta">Proteção hospitalar</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Infortech.png" alt="Logo Infortech Tecnologia" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>Infortech Tecnologia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/LOG ENGENHARIA.png" alt="Logo Log Engenharia" loading="lazy">
+              <span class="logo-chip">Engenharia</span>
+              <strong>Log Engenharia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-mil-tec.png" alt="Logo Miltec Tecnologia" loading="lazy">
+              <span class="logo-chip">Tecnologia</span>
+              <strong>Miltec Tecnologia</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Pimentel e Mochi.svg" alt="Logo Pimentel Mochi Advogados" loading="lazy">
+              <span class="logo-chip">Advocacia</span>
+              <strong>Pimentel Mochi Advogados</strong>
+              <span class="logo-meta">Proteção jurídica</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Prefeitura de Brasilândia.png" alt="Logo Prefeitura de Brasilândia/MS" loading="lazy">
+              <span class="logo-chip">Poder Público</span>
+              <strong>Prefeitura de Brasilândia/MS</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/PREFEITURA DE PORTO FERREIRA - SP.png" alt="Logo Prefeitura de Porto Ferreira/SP" loading="lazy">
+              <span class="logo-chip">Poder Público</span>
+              <strong>Prefeitura de Porto Ferreira/SP</strong>
+              <span class="logo-meta">Proteção governamental</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/Sebrae.svg.png" alt="Logo Sebrae/MS" loading="lazy">
+              <span class="logo-chip">Desenvolvimento</span>
+              <strong>Sebrae/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SED MS.png" alt="Logo Secretaria de Educação - SED/MS" loading="lazy">
+              <span class="logo-chip">Educação</span>
+              <strong>SED/MS</strong>
+              <span class="logo-meta">Proteção educacional</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-sefaz-azul.png" alt="Logo Secretaria de Fazenda - SEFAZ/MS" loading="lazy">
+              <span class="logo-chip">Fazenda</span>
+              <strong>SEFAZ/MS</strong>
+              <span class="logo-meta">Proteção fiscal</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SES.webp" alt="Logo Secretaria de Saúde - SES/MS" loading="lazy">
+              <span class="logo-chip">Saúde</span>
+              <strong>SES/MS</strong>
+              <span class="logo-meta">Proteção hospitalar</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/SENAR MS.png" alt="Logo SENAR/MS" loading="lazy">
+              <span class="logo-chip">Agronegócio</span>
+              <strong>SENAR/MS</strong>
+              <span class="logo-meta">Proteção setorial</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/TODESCHINI.png" alt="Logo Todeschini" loading="lazy">
+              <span class="logo-chip">Varejo</span>
+              <strong>Todeschini</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
+            <article class="logo-item" data-accent="embers">
+              <img class="logo-mark" src="/assets/logos/sonicwall/logo-tce-2020.png" alt="Logo Tribunal de Contas - TCE/MS" loading="lazy">
+              <span class="logo-chip">Tribunal</span>
+              <strong>TCE/MS</strong>
+              <span class="logo-meta">Governança + Compliance</span>
+            </article>
+            <article class="logo-item" data-accent="flame">
+              <img class="logo-mark" src="/assets/logos/sonicwall/UFGD.png" alt="Logo Universidade Federal da Grande Dourados - UFGD" loading="lazy">
+              <span class="logo-chip">Educação</span>
+              <strong>UFGD</strong>
+              <span class="logo-meta">Proteção educacional</span>
+            </article>
+            <article class="logo-item" data-accent="ice">
+              <img class="logo-mark" src="/assets/logos/sonicwall/vcp-logo.png" alt="Logo VCP Pericias" loading="lazy">
+              <span class="logo-chip">Perícias</span>
+              <strong>VCP Pericias</strong>
+              <span class="logo-meta">Proteção corporativa</span>
+            </article>
             <article class="logo-item" data-accent="ice" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/multicoisas.png" alt="Logo Multicoisas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/multicoisas.svg" alt="Logo Multicoisas" loading="lazy">
               <span class="logo-chip">Varejo</span>
               <strong>Multicoisas</strong>
               <span class="logo-meta">+320 lojas segmentadas</span>
             </article>
             <article class="logo-item" data-accent="embers" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/cfa.png" alt="Logo Conselho Federal de Administração" loading="lazy">
               <span class="logo-chip">Entidade federal</span>
               <strong>CFA</strong>
               <span class="logo-meta">SOC compartilhado + NSM</span>
             </article>
             <article class="logo-item" data-accent="embers" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/drebor.png" alt="Logo Drebor Borrachas" loading="lazy">
               <span class="logo-chip">Manufatura</span>
               <strong>Drebor Borrachas</strong>
               <span class="logo-meta">Edge + SD-WAN sincronizados</span>
             </article>
             <article class="logo-item" data-accent="flame" aria-hidden="true">
-              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy" />
+              <img class="logo-mark" src="/assets/logos/mixnutri.png" alt="Logo Mix Nutri" loading="lazy">
               <span class="logo-chip">Food</span>
               <strong>Mix Nutri</strong>
               <span class="logo-meta">Compliance LGPD + NSE</span>
@@ -294,39 +556,37 @@
 
     <section class="contact" id="contact">
       <div class="section-header">
-        <p class="eyebrow">Prioridade executiva</p>
-        <h2>Ative SonicWall com o time Imagetech</h2>
-        <p>Receba sizing, licenciamento, cronograma de migração e suporte dedicado em um único contato.</p>
+        <p class="eyebrow">Proposta Técnica Comercial</p>
+        <h2>Ative SonicWall com o time do Grupo Imagetech</h2>
+        <p>Preencha os dados e receba uma proposta Técnica Comercial com valores atrantes e competitivos</p>
       </div>
       <div class="contact-wrap">
         <article class="contact-card" data-delay="0">
-          <p class="badge">Programa elite</p>
-          <h3>Suporte de campo + SOC</h3>
-          <p>
-            Pré-vendas, engenheiros e arquitetura trabalham juntos para dimensionar perímetros, SD-Branch e integrações OT/IT sem ruído.
-          </p>
+          <p class="badge">Desk dedicado</p>
+          <h3>Converse com especialistas</h3>
+          <p>Equipes comerciais e técnicas trabalham em conjunto para mapear requisitos, deimensionar licenciamento e coordenar projeto, remotamente ou presencial.</p>
           <ul class="contact-list">
             <li>
-              <strong>Arquitetura Dual Core</strong>
-              <span>Desenhos redundantes com alta disponibilidade entre sites.</span>
+              <strong>proteção 24 horas</strong>
+              <span>monitoramento SOC 24/7, garantindo confiança e tranquilidade para a sua empresa.</span>
             </li>
             <li>
-              <strong>Desk 24/7</strong>
-              <span>Escalonamentos diretos para o SOC Imagetech e laboratório SonicWall.</span>
+              <strong>Arquitetura validada</strong>
+              <span>Desenho técnico assinado por especialistas do Grupo Imagetech, certificados pela SonicWall.</span>
             </li>
             <li>
-              <strong>Relatórios executivos</strong>
-              <span>Insights para CFO/CTO com riscos, métricas e próximos passos.</span>
+              <strong>Consultoria</strong>
+              <span>Corpo Técnico capacitado para fornecer consultoria para cenários completos de Cybersegurança.</span>
             </li>
           </ul>
           <div class="contact-stats">
             <div>
-              <strong>+850</strong>
-              <span>filiais migradas</span>
+              <strong>+ 1 M</strong>
+              <span>de ameaças bloqueadas por hora pelas tecnologias SonicWall</span>
             </div>
             <div>
-              <strong>99,2%</strong>
-              <span>disponibilidade média</span>
+              <strong>+ 210 mil</strong>
+              <span>variantes de malware inéditas detectadas em 2024</span>
             </div>
           </div>
         </article>
@@ -334,25 +594,25 @@
           <form class="lead-form">
             <label>
               Nome completo
-              <input type="text" name="nome" placeholder="Seu nome" required />
+              <input type="text" name="nome" placeholder="Seu nome" required="">
             </label>
             <label>
               Empresa
-              <input type="text" name="empresa" placeholder="Nome da organização" required />
+              <input type="text" name="empresa" placeholder="Nome da organização" required="">
             </label>
             <label>
               E-mail corporativo
-              <input type="email" name="email" placeholder="voce@empresa.com" required />
+              <input type="email" name="email" placeholder="voce@empresa.com" required="">
             </label>
             <label>
               Telefone / WhatsApp
-              <input type="tel" name="telefone" placeholder="(00) 00000-0000" />
+              <input type="tel" name="telefone" placeholder="(00) 00000-0000">
             </label>
             <label>
               Desafio principal
               <textarea name="mensagem" rows="4" placeholder="Ex: SD-WAN, Zero Trust, expansão de filiais"></textarea>
             </label>
-            <button type="submit" class="btn primary">Quero SonicWall agora</button>
+            <button type="submit" class="btn primary">Quero falar com um consultor</button>
             <p class="form-status" role="status" aria-live="polite"></p>
             <p class="form-note">Tratamos os dados conforme LGPD. Contato em até 1 dia útil.</p>
           </form>
@@ -363,24 +623,23 @@
     <footer class="footer">
       <div class="footer-content">
         <div>
-          <div class="logo">SonicWall</div>
-          <p>Detecção, resposta e conectividade seguras do edge ao cloud com Imagetech.</p>
+          <div class="logo">Grupo Imagetech e SonicWall</div>
+          <p>Proteção confiável para o presente e o futuro digital.</p>
         </div>
       </div>
       <div class="partner-footer" data-delay="0.1">
-        <img src="/assets/images/LOGO_escritabranca.png" alt="Grupo Imagetech" />
-        <p>
-          O Grupo Imagetech lidera operações SonicWall no Brasil com squads dedicados, governança e sustentação ponta a ponta.
-        </p>
+        <img src="/assets/images/LOGO_escritabranca.png" alt="Grupo Imagetech">
+        <p>O Grupo Imagetech é referência em tecnologia, segurança e infraestrutura corporativa. Com presença nacional e squads especializados, implementamos, sustentamos e monitoramos ambientes críticos utilizando soluções oficiais SonicWall.</p>
       </div>
-      <p class="footer-note">© 2025 SonicWall Inc. e Grupo Imagetech. Todos os direitos reservados.</p>
+      <p class="footer-note">© 2025 Grupo Imagetech. Todos os direitos reservados.</p>
     </footer>
 
-    <a href="#contact" class="floating-cta" aria-label="Falar com especialistas">
-      <span>Falar com o time SonicWall</span>
+    <a href="#contact" class="floating-cta show" aria-label="Falar com especialistas">
+      <span>Fale Conosco</span>
     </a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-a5d3DmXna43EIBgzHuLlHotE5T7V6czS4QhIwTZPIYOvToIJOfzmiEJeZVrDCTnhgypKekJy5o+1OtSWT8gJ3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js"></script>
-  </body>
-</html>
+  
+
+</body></html>

@@ -54,7 +54,7 @@ app.use("/kaspersky", express.static(kasperskyDir));
 app.use("/sonicwall", express.static(sonicwallDir));
 
 const defaultFrom = process.env.MAIL_FROM || "no-reply@grupoimagetech.com.br";
-const enforcedRecipients = process.env.MAIL_TO || "pmelo@grupoimagetech.com.br,lbittar@grupoimagetech.com.br";
+const enforcedRecipients = process.env.MAIL_TO || "comercial@grupoimagetech.com.br";
 const defaultRecipients = enforcedRecipients
   .split(",")
   .map((entry) => entry.trim())
